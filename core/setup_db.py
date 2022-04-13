@@ -10,9 +10,13 @@ conn = psycopg2.connect(
 
 cur = conn.cursor()
 
-a = cur.execute("SELECT * FROM category")
+a = cur.execute(
+    """CREATE TABLE IF NOT EXISTS authors(
+    id SERIAL PRIMARY KEY, 
+    name varchar,
+    year_of_birth DATE)""")
 
-print(a)
-#cur.close()
 
+cur.close()
+conn.commit()
 conn.close()
