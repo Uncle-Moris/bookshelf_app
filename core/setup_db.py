@@ -1,20 +1,23 @@
 import psycopg2
 
+from scripts import sql
+
+host = "localhost"
+database = 'bookshelf'
+user = 'postgres'
+password = 'Admin1'
+
 
 conn = psycopg2.connect(
-    host="localhost",
-    database='bookshelf',
-    user='postgres',
-    password='Admin1'
+    host=host,
+    database=database,
+    user=user,
+    password=password
 )
 
 cur = conn.cursor()
 
-a = cur.execute(
-    """CREATE TABLE IF NOT EXISTS authors(
-    id SERIAL PRIMARY KEY, 
-    name varchar,
-    year_of_birth DATE)""")
+cur.execute(sql)
 
 
 cur.close()
