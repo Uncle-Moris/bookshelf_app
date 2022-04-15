@@ -1,42 +1,37 @@
 --Countries--
-
 CREATE TABLE IF NOT EXISTS countries(
-    id INTEGER NOT NULL ,
+    id SERIAL NOT NULL UNIQUE,
     name VARCHAR(255) UNIQUE,
     shortcut VARCHAR(2) UNIQUE,
     PRIMARY KEY (id)
 );
-
+--Categories--
+CREATE TABLE IF NOT EXISTS  categories(
+    id SERIAL NOT NULL UNIQUE,
+    name VARCHAR UNIQUE ,
+    PRIMARY KEY (id)
+);
+--Status--
+CREATE TABLE IF NOT EXISTS  status(
+    id SERIAL NOT NULL UNIQUE,
+    name VARCHAR UNIQUE ,
+    PRIMARY KEY (id)
+);
 --Authors--
 CREATE TABLE IF NOT EXISTS authors(
-    id INTEGER NOT NULL ,
+    id SERIAL NOT NULL UNIQUE,
     full_name VARCHAR UNIQUE,
-    nationality INTEGER,
+    nationality VARCHAR,
     date_of_birt DATE NOT NULL,
     date_of_die DATE,
     PRIMARY KEY (id),
     FOREIGN KEY (nationality)
-        REFERENCES categories(id)
-);
-
---Categories--
-
-CREATE TABLE IF NOT EXISTS  categories(
-    id INTEGER,
-    name VARCHAR,
-    PRIMARY KEY (id)
-);
-
---Status--
-CREATE TABLE IF NOT EXISTS  status(
-    id INTEGER,
-    name VARCHAR,
-    PRIMARY KEY (id)
+        REFERENCES countries(shortcut)
 );
 
 --Books--
 CREATE TABLE IF NOT EXISTS books(
-    id INTEGER,
+    id SERIAL NOT NULL UNIQUE,
     name VARCHAR,
     --author_id INTEGER NOT NULL,
     author_name varchar,
