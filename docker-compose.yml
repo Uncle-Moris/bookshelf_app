@@ -1,0 +1,11 @@
+services:
+  db:
+    image: "postgres"
+    ports:
+      - "5050:5432"
+    environment:
+      - POSTGRES_DB=bookshelf_app
+      - POSTGRES_USER=bookshelf_app
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - ./data/db:/var/lib/postgresql/data

@@ -1,6 +1,5 @@
 import psycopg2
 
-from scripts import sql
 
 host = "localhost"
 database = 'bookshelf'

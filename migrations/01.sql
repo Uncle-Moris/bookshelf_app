@@ -1,1 +1,1 @@
-INSERT INTO countries (name, shortcut) values ('Uruguay' ,'UY')
+INSERT INTO countries (name, shortcut) values ('Uruguay' ,'UY');

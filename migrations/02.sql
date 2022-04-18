@@ -1,25 +1,25 @@
 --Countries--
 CREATE TABLE IF NOT EXISTS countries(
-    id SERIAL NOT NULL UNIQUE,
+    id SERIAL,
     name VARCHAR(255) UNIQUE,
     shortcut VARCHAR(2) UNIQUE,
     PRIMARY KEY (id)
 );
 --Categories--
 CREATE TABLE IF NOT EXISTS  categories(
-    id SERIAL NOT NULL UNIQUE,
+    id SERIAL,
     name VARCHAR UNIQUE ,
     PRIMARY KEY (id)
 );
 --Status--
 CREATE TABLE IF NOT EXISTS  status(
-    id SERIAL NOT NULL UNIQUE,
+    id SERIAL,
     name VARCHAR UNIQUE ,
     PRIMARY KEY (id)
 );
 --Authors--
 CREATE TABLE IF NOT EXISTS authors(
-    id SERIAL NOT NULL UNIQUE,
+    id SERIAL,
     full_name VARCHAR UNIQUE,
     nationality VARCHAR,
     date_of_birt DATE NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS authors(
 
 --Books--
 CREATE TABLE IF NOT EXISTS books(
-    id SERIAL NOT NULL UNIQUE,
+    id SERIAL,
     name VARCHAR,
     --author_id INTEGER NOT NULL,
     author_name varchar,
