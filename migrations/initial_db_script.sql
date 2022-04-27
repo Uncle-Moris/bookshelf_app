@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS countries(
     PRIMARY KEY (id)
 );
 --Categories--
-CREATE TABLE IF NOT EXISTS  categories(
+CREATE TABLE IF NOT EXISTS categories(
     id SERIAL,
     name VARCHAR UNIQUE ,
     PRIMARY KEY (id)
@@ -42,3 +42,4 @@ CREATE TABLE IF NOT EXISTS books(
     FOREIGN KEY (author_name) REFERENCES authors(full_name),
     FOREIGN KEY (status_id) REFERENCES status(id)
 );
+--DROP table authors,countries,categories,books,status;
