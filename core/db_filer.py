@@ -9,16 +9,15 @@ def get_countries():
 def filer():
     for i in get_countries():
         ConnectionToDatabase.connection(
-            f"INSERT INTO countries (name ,shortcut)"
-            f"values ('%s', '%s')",
-            (i[0], i[1]))
+            query="INSERT INTO countries (name ,shortcut)values (%s, %s)",
+            values=(i[0], i[1]))
 
+
+filer()
 
 if __name__ == "__main__":
-    pass
 
-
-def test_get_countries():
-    result = get_countries()
-    assert len(result) >= 9
+    def test_get_countries():
+        result = get_countries()
+        assert len(result) >= 9
 

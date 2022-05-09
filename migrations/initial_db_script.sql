@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS categories(
     PRIMARY KEY (id)
 );
 --Status--
-CREATE TABLE IF NOT EXISTS  status(
+CREATE TABLE IF NOT EXISTS status(
     id SERIAL,
     name VARCHAR UNIQUE ,
     PRIMARY KEY (id)
@@ -20,7 +20,8 @@ CREATE TABLE IF NOT EXISTS  status(
 --Authors--
 CREATE TABLE IF NOT EXISTS authors(
     id SERIAL,
-    full_name VARCHAR UNIQUE,
+    first_name VARCHAR(255),
+    last_name VARCHAR(255),
     nationality VARCHAR,
     date_of_birt DATE NOT NULL,
     date_of_die DATE,
@@ -32,14 +33,12 @@ CREATE TABLE IF NOT EXISTS authors(
 --Books--
 CREATE TABLE IF NOT EXISTS books(
     id SERIAL,
-    name VARCHAR,
-    --author_id INTEGER NOT NULL,
-    author_name varchar,
+    title VARCHAR,
+    author_id INT NOT NULL,
     status_id INTEGER NOT NULL,
     published_at DATE,
     PRIMARY KEY (id),
-    --FOREIGN KEY (author_id) REFERENCES authors(id),
-    FOREIGN KEY (author_name) REFERENCES authors(full_name),
+    FOREIGN KEY (author_id) REFERENCES authors(id),
     FOREIGN KEY (status_id) REFERENCES status(id)
 );
 --DROP table authors,countries,categories,books,status;
