@@ -1,13 +1,16 @@
+'''The objects in this file respond with the authors table'''
 from datetime import datetime
 from connections import ConnectionToDatabase
 
 
 class Authors:
-    def __int__(self, first_name:str,
-                last_name: str,
-                nationality: str,
-                date_of_birt: datetime,
-                date_of_die: datetime):
+    def __init__(self,
+            first_name:str,
+            last_name: str,
+            nationality: str,
+            date_of_birt: datetime,
+            date_of_die: datetime):
+
         self.first_name = first_name
         self.last_name = last_name
         self.nationality = nationality
