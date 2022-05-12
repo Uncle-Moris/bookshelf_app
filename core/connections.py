@@ -26,6 +26,17 @@ class ConnectionToDatabase:
             conn.commit()
 
     @staticmethod
-    def select(query: str, values: tuple = None):
-        pass
+    def select_all(query: str, values: tuple = None):
+        with psycopg2.connect(
+                port='5050',
+                host="localhost",
+                database='bookshelf_app',
+                user='bookshelf_app',
+                password='password') \
+                as conn:
+            with conn.cursor() as cur:
+                cur.execute(query, values)
+                return cur.fetchall()
+
+            #conn.commit()
 
