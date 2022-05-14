@@ -38,5 +38,6 @@ class ConnectionToDatabase:
                 cur.execute(query, values)
                 return cur.fetchall()
 
+
             #conn.commit()
 
