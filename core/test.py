@@ -1,6 +1,9 @@
-from categories import Categories
+from authors import Authors
+from datetime import datetime
 
-a = Categories.list_of_all_similar_categories()
+#a=date#time.date(1998, 1, 2)
+#b=datetime.date(1998, 1, 2)
 
-for i in a:
-    print(i[1])
+test1 = Authors(first_name='Jan',last_name='Wojtyła',nationality= 'PL', date_of_birt=(1998, 1, 2),date_of_die=(1998, 1, 2))
+
+print(test1.date_of_die)

@@ -25,11 +25,10 @@ CREATE TABLE IF NOT EXISTS authors(
     nationality VARCHAR,
     date_of_birt DATE NOT NULL,
     date_of_die DATE,
-    PRIMARY KEY (id),
-    FOREIGN KEY (nationality)
+        PRIMARY KEY (id),
+        FOREIGN KEY (nationality)
         REFERENCES countries(shortcut)
 );
-
 --Books--
 CREATE TABLE IF NOT EXISTS books(
     id SERIAL,
@@ -37,8 +36,8 @@ CREATE TABLE IF NOT EXISTS books(
     author_id INT NOT NULL,
     status_id INTEGER NOT NULL,
     published_at DATE,
-    PRIMARY KEY (id),
-    FOREIGN KEY (author_id) REFERENCES authors(id),
-    FOREIGN KEY (status_id) REFERENCES status(id)
+        PRIMARY KEY (id),
+        FOREIGN KEY (author_id) REFERENCES authors(id),
+        FOREIGN KEY (status_id) REFERENCES status(id)
 );
 --DROP table authors,countries,categories,books,status;
