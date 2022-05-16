@@ -22,22 +22,29 @@ CREATE TABLE IF NOT EXISTS authors(
     id SERIAL,
     first_name VARCHAR(255),
     last_name VARCHAR(255),
+    --details JSONB,
     nationality VARCHAR,
     date_of_birt DATE NOT NULL,
     date_of_die DATE,
         PRIMARY KEY (id),
-        FOREIGN KEY (nationality)
-        REFERENCES countries(shortcut)
+        FOREIGN KEY (nationality) REFERENCES countries(shortcut) ON UPDATE CASCADE
 );
 --Books--
 CREATE TABLE IF NOT EXISTS books(
     id SERIAL,
     title VARCHAR,
+    --details JSONB,
     author_id INT NOT NULL,
     status_id INTEGER NOT NULL,
     published_at DATE,
         PRIMARY KEY (id),
-        FOREIGN KEY (author_id) REFERENCES authors(id),
-        FOREIGN KEY (status_id) REFERENCES status(id)
+        FOREIGN KEY (author_id)
+            REFERENCES authors(id)
+                ON UPDATE CASCADE
+                ON DELETE CASCADE ,
+        FOREIGN KEY (status_id)
+            REFERENCES status(id)
+                ON UPDATE CASCADE
+                ON DELETE CASCADE
 );
 --DROP table authors,countries,categories,books,status;
