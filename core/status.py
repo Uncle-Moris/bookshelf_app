@@ -22,7 +22,7 @@ class Status:
 
 class StatusManaging:
     @staticmethod
-    def sss():
+    def run():
         while True:
             print('categories managing panel')
             print("What you like do")
