@@ -1,13 +1,11 @@
-from authors import Authors
+#from authors import Authors
 from datetime import datetime
+from connections import ConnectionToDatabase
 
-#a=date#time.date(1998, 1, 2)
-#b=datetime.date(1998, 1, 2)
-
-test1 = Authors(first_name='Jan',
-                last_name='Wojtyła',
-                nationality= 'PL',
-                date_of_birt=(1998, 1, 2),
-                date_of_die=(1998, 1, 2))
-
-print(test1.date_of_die,test1.date_of_birt)
+nationality = input('Enter counties name')
+natio = ConnectionToDatabase.select_all(
+                    f'SELECT shortcut '
+                    f'FROM countries '
+                    f'WHERE name ILIKE %s'
+                    f'LIMIT 1', (nationality, ))
+print(natio[0][0])

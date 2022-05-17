@@ -7,36 +7,10 @@ class Authors:
     def __init__(self,
             first_name:str,
             last_name: str,
-            nationality: str,
-            date_of_birt: datetime.date,
-            date_of_die: datetime.date):
+            nationality: str):
         self.first_name = first_name
         self.last_name = last_name
         self.nationality = nationality
-        self.date_of_birt = date_of_birt
-        self.date_of_die = date_of_die
-
-
-
-
-
-
-'''
-        ConnectionToDatabase(
-            f"INSERT INTO authors (first_name, last_name, nationality, date_of_birt, date_of_die)"
-            "values ('s%', 's%','s%', 's%', 's%')",
-            (self.first_name,
-             self.last_name,
-             self.nationality,
-             self.date_of_birt,
-             self.date_of_die
-             ))
-'''
-
-#    @staticmethod
-#    def get_authors(self):
-#        pass
-
 
 
 class AuthorsManaging:
@@ -47,19 +21,20 @@ class AuthorsManaging:
         first_name = input('Enter the author\'s first name')
         last_name = input('Enter the author\'s last name')
         try:
+            nationality = input('Enter counties name')
+            natio = ConnectionToDatabase.select_all(
+                f'SELECT shortcut '
+                f'FROM countries '
+                f'WHERE name ILIKE %s'
+                f'LIMIT 1', (nationality,))
+            print(natio[0][0])
 
-            nationality = ConnectionToDatabase()
-            pass
-
-        date_of_birt = input(4)
-        date_of_die = input(5)
+        except print('')
 
         new_author = Authors(
             first_name=first_name,
             last_name=input('Enter the author\'s last` name'),
             nationality=input(),
-            date_of_birt=input(4),
-            date_of_die=input(5))
         return new_author
 
 

@@ -22,10 +22,8 @@ CREATE TABLE IF NOT EXISTS authors(
     id SERIAL,
     first_name VARCHAR(255),
     last_name VARCHAR(255),
-    --details JSONB,
+    --details JSONB, (move dates of birt and die in to json format)
     nationality VARCHAR,
-    date_of_birt DATE NOT NULL,
-    date_of_die DATE,
         PRIMARY KEY (id),
         FOREIGN KEY (nationality) REFERENCES countries(shortcut) ON UPDATE CASCADE
 );
