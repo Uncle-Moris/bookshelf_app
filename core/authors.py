@@ -12,34 +12,65 @@ class Authors:
         self.last_name = last_name
         self.nationality = nationality
 
-
-class AuthorsManaging:
-
     @staticmethod
     def add_author():
-        #while True:
-        first_name = input('Enter the author\'s first name')
-        last_name = input('Enter the author\'s last name')
         try:
+            first_name = input('Enter the author\'s first name')
+            last_name = input('Enter the author\'s last name')
+
             nationality = input('Enter counties name')
             natio = ConnectionToDatabase.select_all(
                 f'SELECT shortcut '
                 f'FROM countries '
                 f'WHERE name ILIKE %s'
                 f'LIMIT 1', (nationality,))
-            print(natio[0][0])
 
-        except print('')
+        except Exception:
+            print('You used some bad data')
 
         new_author = Authors(
             first_name=first_name,
-            last_name=input('Enter the author\'s last` name'),
-            nationality=input(),
+            last_name=last_name,
+            nationality=natio[0][0])
         return new_author
 
+class AuthorsManaging:
+
+    @staticmethod
+    def add_author():
+        try:
+            first_name = input('Enter the author\'s first name')
+            last_name = input('Enter the author\'s last name')
+
+            nationality = input('Enter counties name')
+            natio = ConnectionToDatabase.select_all(
+                    f'SELECT shortcut '
+                    f'FROM countries '
+                    f'WHERE name ILIKE %s'
+                    f'LIMIT 1', (nationality,))
+
+        except Exception:
+            print('You used some bad data')
+
+
+        new_author = Authors(
+            first_name=first_name,
+            last_name=last_name,
+            nationality= natio[0][0])
+
+        ConnectionToDatabase.connection('INSERT INTO public.authors '
+                                        'first_name,'
+                                        'last_name,'
+                                        'nationality'
+                                        'values (
+                                        ') ()',
+                                                        (new_author.first_name,
+                                                        new_author.last_name,
+                                                        new_author.nationality))
 
 
 
 
+test = AuthorsManaging().add_author()
 
-print(AuthorsManaging.add_author())
+print(test.first_name())
