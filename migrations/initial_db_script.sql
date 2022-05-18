@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS books(
     --details JSONB,
     author_id INT NOT NULL,
     status_id INTEGER NOT NULL,
+    categories_id INTEGER NOT NULL,
     published_at DATE,
         PRIMARY KEY (id),
         FOREIGN KEY (author_id)
@@ -43,6 +44,10 @@ CREATE TABLE IF NOT EXISTS books(
         FOREIGN KEY (status_id)
             REFERENCES status(id)
                 ON UPDATE CASCADE
+                ON DELETE CASCADE,
+        FOREIGN KEY (categories_id)
+            REFERENCES categories(id)
+                ON UPDATE CASCADE
                 ON DELETE CASCADE
-);
+                                );
 --DROP table authors,countries,categories,books,status;

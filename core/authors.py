@@ -58,19 +58,13 @@ class AuthorsManaging:
             last_name=last_name,
             nationality= natio[0][0])
 
-        ConnectionToDatabase.connection('INSERT INTO public.authors '
-                                        'first_name,'
-                                        'last_name,'
-                                        'nationality'
-                                        'values (
-                                        ') ()',
-                                                        (new_author.first_name,
-                                                        new_author.last_name,
-                                                        new_author.nationality))
-
+        ConnectionToDatabase.connection('INSERT INTO public.authors(first_name,last_name,nationality) values(%s,%s,%s)',(
+                                                   new_author.first_name,
+                                                    new_author.last_name,
+                                                    new_author.nationality))
+        print("its works !!!!")
 
 
 
 test = AuthorsManaging().add_author()
 
-print(test.first_name())
