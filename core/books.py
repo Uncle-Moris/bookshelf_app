@@ -1,4 +1,5 @@
-import connections
+from connections import ConnectionToDatabase
+from status import Status
 import datetime
 
 class Book:
@@ -15,7 +16,30 @@ class Book:
         self.categories_id = categories_id
 
 
-
 class BooksManaging:
-    pass
+    @staticmethod
+    def add_book():
+        title = input('Put a book title')
+        #try:
+        author_fullname = input("Put author fullname")
+        author_fullname = author_fullname.split(' ')
 
+        author_id = ConnectionToDatabase.select_all(
+            f"select id"
+            f" from public.authors "
+            f"where first_name "
+            f"ilike '%{author_fullname[0]}%' "
+            f"and "
+            f"last_name "
+            f"ilike '%{author_fullname[1]}%' "
+            f"limit 1", None)
+
+        status_name = input('Put staust name')
+        status_id = ConnectionToDatabase.select_all(
+            f"SELECT id "
+            f"FROM public.status "
+            f"WHERE name "
+            f"ilike '{status_name}' "
+            f"LIMIT 1", None)
+
+        published_at = input()
