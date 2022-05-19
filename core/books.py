@@ -43,3 +43,9 @@ class BooksManaging:
             f"LIMIT 1", None)
 
         published_at = input()
+    @staticmethod
+    def get_book_details():
+        title = input('Put books title')
+        return ConnectionToDatabase.select_all(
+            f"SELECT * from public.books WHERE title ilike {title}"
+        , None)
