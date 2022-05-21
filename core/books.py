@@ -1,8 +1,11 @@
+"""This module is responsible for books managing"""
+import datetime
 from connections import ConnectionToDatabase
 from status import Status
-import datetime
+
 
 class Book:
+    """ """
     def __init__(self,
                  title: str,
                  author_id: int,
@@ -19,8 +22,8 @@ class Book:
 class BooksManaging:
     @staticmethod
     def add_book():
+        """Those methode allow adds new book to database"""
         title = input('Put a book title')
-        #try:
         author_fullname = input("Put author fullname")
         author_fullname = author_fullname.split(' ')
 

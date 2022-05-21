@@ -9,7 +9,7 @@ DATES_TO_CONNECTION = dict(
                 password='password')
 
 class ConnectionToDatabase:
-    """Object responsible for db connection"""
+    """Class responsible for db connection"""
 
     @staticmethod
     def connection(query: str, values: tuple):
