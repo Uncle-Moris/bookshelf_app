@@ -51,5 +51,4 @@ class BooksManaging:
     def get_book_details():
         title = input('Put books title')
         return ConnectionToDatabase.select_all(
-            f"SELECT * from public.books WHERE title ilike {title}"
-        , None)
+            f"SELECT * from public.books WHERE title ilike {title}", None)

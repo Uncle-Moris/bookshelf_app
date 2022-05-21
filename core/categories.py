@@ -1,5 +1,7 @@
 from connections import ConnectionToDatabase
 
+NL = '{\n}'
+
 
 class Categories:
     @staticmethod
@@ -23,16 +25,22 @@ class Categories:
 
 
 class CategoriesManaging:
+    COMMANDS = {"ADD": "Add new categories",
+                "LS": "To list categories",
+                "Q": "to go out from categories managing"}
+
     @staticmethod
     def run():
+        """Allow to run status"""
+        print('Categories managing panel')
         while True:
-            print('categories managing panel')
-            print("QUIT - Left Categories Managing\n"
-                  "LIST - Get list of all categories\n"
-                  "ADD  - Add new categories \n"
-                  "SRCH - Get simular categories list")
-            command = input('What you like do? Type command :')
-            if command == 'ADD':
+            command = input(
+                f'What you like do ?\n\n'
+                f'{str().join([f"{k} - {v}{NL}" for k, v in CategoriesManaging.COMMANDS.items()])}\n'
+                f'Type command :').upper()
+
+
+            if command == list(CategoriesManaging.COMMANDS.keys())[0]:
                 new_category = input("Drop new categories name:")
                 Categories.add_new_category(new_category)
 
