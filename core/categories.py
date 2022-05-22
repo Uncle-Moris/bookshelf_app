@@ -1,4 +1,6 @@
+from time import sleep
 from connections import ConnectionToDatabase
+
 
 NL = '{\n}'
 
@@ -39,25 +41,26 @@ class CategoriesManaging:
                 f'{str().join([f"{k} - {v}{NL}" for k, v in CategoriesManaging.COMMANDS.items()])}\n'
                 f'Type command :').upper()
 
-
             if command == list(CategoriesManaging.COMMANDS.keys())[0]:
                 new_category = input("Drop new categories name:")
                 Categories.add_new_category(new_category)
+                sleep(2)
+                break
 
 
             elif command == 'LIST':
                 for i in Categories.list_of_all_similar_categories():
                     print(i[0])
+                    sleep(0.5)
+                print('\n')
+
             elif command == 'SRCH':
                 name = input("What are you looking for? :")
                 for i in Categories.list_of_all_similar_categories(name):
                     print(i[0])
                 print('\n')
             elif command == 'QUIT':
-                break;break
-            else:
-                pass
+                break
 
 
 
-CategoriesManaging.run()

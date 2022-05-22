@@ -35,7 +35,6 @@ class Authors:
         return new_author
 
 class AuthorsManaging:
-
     @staticmethod
     def add_author():
         try:
@@ -63,8 +62,3 @@ class AuthorsManaging:
                                                     new_author.last_name,
                                                     new_author.nationality))
         print("its works !!!!")
-
-
-
-test = AuthorsManaging().add_author()
-
