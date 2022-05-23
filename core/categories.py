@@ -2,7 +2,7 @@ from time import sleep
 from connections import ConnectionToDatabase
 
 
-NL = '{\n}'
+NL = '\n'
 
 
 class Categories:
@@ -13,6 +13,7 @@ class Categories:
                 'INSERT INTO public.categories(name) values (%s)', (name, ))
         except:
             print(f"Category {name.upper()} already exist !")
+
 
     @staticmethod
     def list_of_all_similar_categories(category_name: str = None):
@@ -27,10 +28,12 @@ class Categories:
 
 
 class CategoriesManaging:
-    COMMANDS = {"ADD": "Add new categories",
+    COMMANDS = {
+                "ADD": "Add new categories",
                 "LS": "To list categories",
                 "SRCH": "To search by name",
-                "Q": "to go out from categories managing"}
+                "Q": "to go out from categories managing"
+                }
 
     @staticmethod
     def run():
@@ -39,12 +42,12 @@ class CategoriesManaging:
         while True:
             command = input(
                 f'What you like do ?\n\n'
-                f'{str().join([f"{k} - {v}{NL}" for k, v in CategoriesManaging.COMMANDS.items()])}\n'
+                f'{"".join([f"{k} - {v}{NL}" for k, v in CategoriesManaging.COMMANDS.items()])}\n'
                 f'Type command :').upper()
 
             if command == list(CategoriesManaging.COMMANDS.keys())[0]:
-                new_category = input("Drop new categories name:")
-                Categories.add_new_category(new_category)
+                new_category_name = input("Defined a new categories name:")
+                Categories.add_new_category(new_category_name)
                 sleep(2)
                 break
 
@@ -52,14 +55,16 @@ class CategoriesManaging:
                 for i in Categories.list_of_all_similar_categories():
                     print(i[0])
                     sleep(0.5)
+                sleep(3)
                 print('\n')
 
             elif command == command == list(CategoriesManaging.COMMANDS.keys())[2]:
                 name = input("What are you looking for? :")
                 for i in Categories.list_of_all_similar_categories(name):
                     print(i[0])
+                    sleep(0.5)
+                sleep(3)
                 print('\n')
 
             elif command == command == list(CategoriesManaging.COMMANDS.keys())[3]:
                 break
-w

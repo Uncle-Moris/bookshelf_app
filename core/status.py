@@ -1,4 +1,5 @@
 """This module is responsible for status managing"""
+from time import sleep
 from connections import ConnectionToDatabase
 
 NL = '\n'
@@ -17,9 +18,9 @@ class Status:
         """This method is responsible for displaying the available results"""
         if status_name is not None:
             return ConnectionToDatabase.select_all(
-                f"SELECT * FROM public.categories WHERE name ilike '%{status_name}%' ORDER BY id",
+                f"SELECT name FROM public.status WHERE name ilike '%{status_name}%' ORDER BY id",
                 None)
-        return ConnectionToDatabase.select_all("SELECT * FROM public.status "
+        return ConnectionToDatabase.select_all("SELECT name FROM public.status "
                                                "order by name asc", None)
 
 
@@ -28,6 +29,7 @@ class StatusManaging:
 
     COMMANDS = {"ADD": "To add new status",
                 "LS": "To list status",
+                "SRCH": "To search by name",
                 "Q": "Go out from Status Managing"}
 
     @staticmethod
@@ -37,18 +39,29 @@ class StatusManaging:
         while True:
             command = input(
                 f'What you like do ?\n\n'
-                f'{str().join([f"{k} - {v}{NL}" for k, v in StatusManaging.COMMANDS.items()])}\n'
+                f'{"".join([f"{k} - {v}{NL}" for k, v in StatusManaging.COMMANDS.items()])}\n'
                 f'Type command :').upper()
 
             if command == list(StatusManaging.COMMANDS.keys())[0]:
-                name = input("")
-                Status.add_new_status(name)
-
-            elif command == list(StatusManaging.COMMANDS.keys())[1]:
-                name = input("")
-                Status.list_of_all_status(name)
+                new_status_name = input("Defined a new status name\n: ")
+                Status.add_new_status(new_status_name)
 
             elif command == list(StatusManaging.COMMANDS.keys())[2]:
+                status_name = input("What are you looking for ? \n:")
+                for i in Status.list_of_all_status(status_name):
+                    print(i[0])
+                    sleep(0.5)
+                sleep(3)
+                print('\n')
+
+            elif command == list(StatusManaging.COMMANDS.keys())[1]:
+                for i in Status.list_of_all_status():
+                    print(i[0])
+                    sleep(0.5)
+                sleep(3)
+                print('\n')
+
+            elif command == list(StatusManaging.COMMANDS.keys())[3]:
                 break
 
             else:
