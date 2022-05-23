@@ -29,6 +29,7 @@ class Categories:
 class CategoriesManaging:
     COMMANDS = {"ADD": "Add new categories",
                 "LS": "To list categories",
+                "SRCH": "To search by name",
                 "Q": "to go out from categories managing"}
 
     @staticmethod
@@ -47,20 +48,18 @@ class CategoriesManaging:
                 sleep(2)
                 break
 
-
-            elif command == 'LIST':
+            elif command == list(CategoriesManaging.COMMANDS.keys())[1]:
                 for i in Categories.list_of_all_similar_categories():
                     print(i[0])
                     sleep(0.5)
                 print('\n')
 
-            elif command == 'SRCH':
+            elif command == command == list(CategoriesManaging.COMMANDS.keys())[2]:
                 name = input("What are you looking for? :")
                 for i in Categories.list_of_all_similar_categories(name):
                     print(i[0])
                 print('\n')
-            elif command == 'QUIT':
+
+            elif command == command == list(CategoriesManaging.COMMANDS.keys())[3]:
                 break
-
-
-
+w
