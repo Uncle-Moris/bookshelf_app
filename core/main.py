@@ -26,7 +26,10 @@ class Driver:
 
             if command == list(Driver.COMMANDS.keys())[0]:
                 """To fill when Authors.py will be ready"""
+                authors.AuthorsManaging.run()
                 pass
+
+
             elif command == list(Driver.COMMANDS.keys())[1]:
                 """To fill when Books.py will be ready"""
                 pass
