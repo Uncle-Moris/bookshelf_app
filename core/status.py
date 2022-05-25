@@ -14,7 +14,7 @@ class Status:
             'INSERT INTO public.status(name) values (%s)', (name, ))
 
     @staticmethod
-    def list_of_all_status(status_name: str = None):
+    def get_status(status_name: str = None):
         """This method is responsible for displaying the available results"""
         if status_name is not None:
             return ConnectionToDatabase.select_all(
@@ -48,14 +48,14 @@ class StatusManaging:
 
             elif command == list(StatusManaging.COMMANDS.keys())[2]:
                 status_name = input("What are you looking for ? \n:")
-                for i in Status.list_of_all_status(status_name):
+                for i in Status.get_status(status_name):
                     print(i[0])
                     sleep(0.5)
                 sleep(3)
                 print('\n')
 
             elif command == list(StatusManaging.COMMANDS.keys())[1]:
-                for i in Status.list_of_all_status():
+                for i in Status.get_status():
                     print(i[0])
                     sleep(0.5)
                 sleep(3)

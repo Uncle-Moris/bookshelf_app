@@ -2,6 +2,7 @@
 from datetime import datetime
 from connections import ConnectionToDatabase
 
+NL = '\n'
 
 class Authors:
     def __init__(self,
@@ -56,8 +57,17 @@ class AuthorsManaging:
     def run():
         """Allow to run managing"""
         print('Authors managing panel')
+        command = input(
+            f'What you like do ?\n\n'
+            f'{"".join([f"{k} - {v}{NL}" for k, v in AuthorsManaging.COMMANDS.items()])}\n'
+            f'Type command :').upper()
+        while True:
+            if command == list(AuthorsManaging.COMMANDS.keys())[0]:
+                new_author_name = input("Defined a new status name\n: ")
+                Authors.add_author(new_author_name)
 
+            elif command == list(AuthorsManaging.COMMANDS.keys())[2]:
+                pass
 
-
-
-
+            elif command == list(AuthorsManaging.COMMANDS.keys())[2]:
+                break
