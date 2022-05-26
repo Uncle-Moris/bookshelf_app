@@ -76,5 +76,6 @@ class AuthorsManaging:
             elif command == list(AuthorsManaging.COMMANDS.keys())[2]:
                 break
 
+
 if __name__ == '__main__':
     print(Authors.get_author())
