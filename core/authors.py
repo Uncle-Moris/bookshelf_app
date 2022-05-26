@@ -33,18 +33,27 @@ class Authors:
             first_name=first_name,
             last_name=last_name,
             nationality=natio[0][0])
-        return new_author
+
+        ConnectionToDatabase.connection(
+            'INSERT INTO  authors (first_name, last_name, nationality)'
+            'values (%s, %s, %s)',
+            (new_author.first_name,
+             new_author.last_name,
+             new_author.nationality)
+        )
+
+
 
     @staticmethod
     def get_author():
         fullname = input("Who you looking for ?")
         fullname = fullname.split(' ')
-        return ConnectionToDatabase.connection("SELECT *"
+        return ConnectionToDatabase.select_all("SELECT *"
                                                " FROM authors "
                                                "where "
-                                               "first_name ilike %s "
+                                               "first_name ilike '%%s%' "
                                                "and"
-                                               " last_name ilike %s",
+                                               " last_name ilike '%%s%'",
                                         (fullname[0], fullname[1]))
 
 
@@ -71,3 +80,6 @@ class AuthorsManaging:
 
             elif command == list(AuthorsManaging.COMMANDS.keys())[2]:
                 break
+
+if __name__ == '__main__':
+    print(Authors.add_author())
