@@ -48,13 +48,8 @@ class Authors:
     def get_author():
         fullname = input("Who you looking for ?")
         fullname = fullname.split(' ')
-        return ConnectionToDatabase.select_all("SELECT *"
-                                               " FROM authors "
-                                               "where "
-                                               "first_name ilike '%%s%' "
-                                               "and"
-                                               " last_name ilike '%%s%'",
-                                        (fullname[0], fullname[1]))
+        return ConnectionToDatabase.select_all(f"SELECT * FROM authors where first_name ilike '%{fullname[0]}%' and last_name ilike '%{fullname[1]}%' ",
+                                        None)
 
 
 class AuthorsManaging:
@@ -82,4 +77,4 @@ class AuthorsManaging:
                 break
 
 if __name__ == '__main__':
-    print(Authors.add_author())
+    print(Authors.get_author())
