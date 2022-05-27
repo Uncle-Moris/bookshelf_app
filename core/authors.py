@@ -53,6 +53,8 @@ class Authors:
 
 
 class AuthorsManaging:
+    """Class responsible for driving actions on authors"""
+
     COMMANDS = {"ADD": "To add new author",
                 "SRCH": "To search author by name",
                 "Q": "Go out from Status Managing"}
@@ -61,17 +63,16 @@ class AuthorsManaging:
     def run():
         """Allow to run managing"""
         print('Authors managing panel')
-        command = input(
-            f'What you like do ?\n\n'
-            f'{"".join([f"{k} - {v}{NL}" for k, v in AuthorsManaging.COMMANDS.items()])}\n'
-            f'Type command :').upper()
         while True:
+            command = input(
+                f'What you like do ?\n\n'
+                f'{"".join([f"{k} - {v}{NL}" for k, v in AuthorsManaging.COMMANDS.items()])}\n'
+                f'Type command :').upper()
             if command == list(AuthorsManaging.COMMANDS.keys())[0]:
-                new_author_name = input("Defined a new status name\n: ")
-                Authors.add_author(new_author_name)
+                Authors.add_author()
 
-            elif command == list(AuthorsManaging.COMMANDS.keys())[2]:
-                pass
+            elif command == list(AuthorsManaging.COMMANDS.keys())[1]:
+                Authors.get_author()
 
             elif command == list(AuthorsManaging.COMMANDS.keys())[2]:
                 break
@@ -79,3 +80,4 @@ class AuthorsManaging:
 
 if __name__ == '__main__':
     print(Authors.get_author())
+    AuthorsManaging.run()
