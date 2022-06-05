@@ -52,3 +52,7 @@ class BooksManaging:
         title = input('Put books title')
         return ConnectionToDatabase.select_all(
             f"SELECT * from public.books WHERE title ilike {title}", None)
+
+
+if __name__ == '__main__':
+    BooksManaging.run()

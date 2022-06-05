@@ -1,6 +1,7 @@
 '''The objects in this file respond with the authors table'''
 from datetime import datetime
 from connections import ConnectionToDatabase
+from time import sleep
 
 NL = '\n'
 
@@ -48,8 +49,15 @@ class Authors:
     def get_author():
         fullname = input("Who you looking for ?")
         fullname = fullname.split(' ')
-        return ConnectionToDatabase.select_all(f"SELECT * FROM authors where first_name ilike '%{fullname[0]}%' and last_name ilike '%{fullname[1]}%' ",
-                                        None)
+        results = ConnectionToDatabase.select_all(
+            f"SELECT * "
+            f"FROM authors "
+            f"where first_name "
+            f"ilike '%{fullname[0]}%' "
+            f"and last_name "
+            f"ilike '%{fullname[1]}%'",
+            None)
+        return print(results)
 
 
 class AuthorsManaging:
@@ -77,7 +85,9 @@ class AuthorsManaging:
             elif command == list(AuthorsManaging.COMMANDS.keys())[2]:
                 break
 
+            else:
+                print('Wrong command, try again.\n ')
+                sleep(1.5)
 
 if __name__ == '__main__':
-    print(Authors.get_author())
     AuthorsManaging.run()
